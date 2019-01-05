@@ -58,6 +58,8 @@ module.exports = appInfo => {
     config.wx = {
         token: 'h0OsNBlSEqqKHdrYJIuJNipXWX7g5yyL',
         EncodingAESKey: 'vqifAtdnHaEzievRRrF5k58PIttCgHW4UDpJZ5waP3l',
+        appid: 'wxc32a98e6039c198f',
+        appsecret: 'd4820a9d94cdfbab2a4d82cbca8c759c',
     };
 
     return config;

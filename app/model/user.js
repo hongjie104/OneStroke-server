@@ -4,7 +4,6 @@ module.exports = app => {
      * 用户表
      */
     return mongoose.model('User', new mongoose.Schema({
-        name: { type: String, required: true },
-        password: { type: String, required: true },
+        openid: { type: String, required: true },
     }));
 };
