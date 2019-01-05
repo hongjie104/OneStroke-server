@@ -1,7 +1,7 @@
 module.exports = app => {
     const { router, controller } = app;
 
-    // router.post('/api/app/series/top/:count', controller.app.series.top);
+    router.post('/api/user/login', controller.game.user.login);
 
     // app
     // router.resources('series', '/api/app/series', controller.app.series);
