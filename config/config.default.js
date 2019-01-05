@@ -55,5 +55,10 @@ module.exports = appInfo => {
         ],
     };
 
+    config.wx = {
+        token: 'h0OsNBlSEqqKHdrYJIuJNipXWX7g5yyL',
+        EncodingAESKey: 'vqifAtdnHaEzievRRrF5k58PIttCgHW4UDpJZ5waP3l',
+    };
+
     return config;
 };
