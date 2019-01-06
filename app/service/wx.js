@@ -5,7 +5,9 @@ class WXService extends Service {
     async getUserInfo(code) {
         const { appid, appsecret } = this.ctx.app.config.wx;
         let url = `https://api.weixin.qq.com/sns/oauth2/access_token?appid=${appid}&secret=${appsecret}&code=${code}&grant_type=authorization_code`;
+        this.ctx.logger.error('====result====');
         let result = await this.ctx.curl(url, { dataType: 'json' });
+        this.ctx.logger.error(result);
         const { data } = result;
         const {
             // 网页授权接口调用凭证, 注意：此access_token与基础支持的access_token不同
@@ -20,7 +22,9 @@ class WXService extends Service {
             // scope,
         } = data;
         url = `https://api.weixin.qq.com/sns/userinfo?access_token=${access_token}&openid=${openid}&lang=zh_CN`;
+        this.ctx.logger.error('====result====');
         result = await this.ctx.curl(url, { dataType: 'json' });
+        this.ctx.logger.error(result);
         /*
             openid	用户的唯一标识
             nickname	用户昵称
