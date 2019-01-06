@@ -36,7 +36,13 @@ class WXService extends Service {
     }
 
     async getAccessToken() {
-        let { access_token, access_token_expires } = await this.ctx.model.Wx.findOne({}, { access_token_expires: 1, access_token: 1 });
+        const wxData = await this.ctx.model.Wx.findOne({}, { access_token_expires: 1, access_token: 1 });
+        let access_token = '';
+        let access_token_expires = 0;
+        if (wxData) {
+            access_token_expires = wxData.access_token_expires;
+            access_token = wxData.access_token;
+        }
         const now = new Date().getTime();
         if (access_token_expires - 600000 < now) {
             // 过期了
@@ -54,7 +60,13 @@ class WXService extends Service {
     }
 
     async getJSApiTicket() {
-        let { jsapi_ticket_expires, jsapi_ticket } = await this.ctx.model.Wx.findOne({}, { jsapi_ticket_expires: 1, jsapi_ticket: 1 });
+        const wxData = await this.ctx.model.Wx.findOne({}, { jsapi_ticket_expires: 1, jsapi_ticket: 1 });
+        let jsapi_ticket_expires = 0;
+        let jsapi_ticket = '';
+        if (wxData) {
+            jsapi_ticket = wxData.jsapi_ticket;
+            jsapi_ticket_expires = wxData.jsapi_ticket_expires;
+        }
         const now = new Date().getTime();
         if (jsapi_ticket_expires - 600000 < now) {
             // 过期了
