@@ -6,6 +6,9 @@ module.exports = app => {
 
     const { router, controller } = app;
     router.get('/', controller.home.index);
+    // 微信jssdk签名
+    // body: { url: String }
+    router.post('/sign', controller.home.createSignature);
 
     router.get('/test', controller.home.test);
 

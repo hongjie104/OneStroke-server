@@ -16,6 +16,20 @@ class HomeController extends Controller {
         }
     }
 
+    async createSignature() {
+        const { url } = this.ctx.request.body;
+        const noncestr = this.ctx.helper.randomStr();
+        const jsapi_ticket = await this.ctx.service.wx.getJSApiTicket();
+        const timestamp = Math.floor(new Date().getTime() / 1000);
+        const str = `jsapi_ticket=${jsapi_ticket}&noncestr=${noncestr}&timestamp=${timestamp}&url=${url}`;
+        const signature = crypto.createHash('sha1').update(str).digest('hex');
+        this.success({
+            noncestr,
+            timestamp,
+            signature,
+        });
+    }
+
     async test() {
         this.success();
     }
