@@ -36,7 +36,7 @@ class UserController extends Controller {
             headimgurl,
             unionid,
         } }, { upsert: true, new: true });
-        return user._id;
+        this.success(user._id);
     }
 }
 
