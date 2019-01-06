@@ -58,7 +58,14 @@ class UserController extends Controller {
         this.success({
             id: user._id,
             money: user.money,
+            curLevel: user.curLevel,
         });
+    }
+
+    async passLevel() {
+        const { uid } = this.ctx.state;
+        await this.ctx.model.User.update({ _id: uid }, { $inc: { curLevel: 1 } });
+        this.success();
     }
 
     async getRedBag() {

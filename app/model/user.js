@@ -22,5 +22,6 @@ module.exports = app => {
         unionid: { type: String, default: '' },
         // 已获得的钱的数量
         money: { type: Number, default: 0 },
+        curLevel: { type: Number, default: 1 },
     }));
 };

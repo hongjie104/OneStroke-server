@@ -6,6 +6,8 @@ module.exports = app => {
 
     router.post('/api/user/get_red_bag', uid, controller.game.user.getRedBag);
 
+    router.get('/api/user/pass_level', uid, controller.game.user.passLevel);
+
     // app
     // router.resources('series', '/api/app/series', controller.app.series);
 
