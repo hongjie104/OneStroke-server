@@ -60,6 +60,14 @@ class UserController extends Controller {
             money: user.money,
         });
     }
+
+    async getRedBag() {
+        const { uid } = this.ctx.state;
+        const { minVal, maxVal } = this.ctx.request.body;
+        const money = parseFloat((Math.random() * (maxVal - minVal) + minVal).toFixed(2));
+        await this.ctx.model.User.update({ _id: uid }, { $inc: { money } });
+        this.success({ money });
+    }
 }
 
 module.exports = UserController;

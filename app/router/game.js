@@ -1,7 +1,10 @@
 module.exports = app => {
     const { router, controller } = app;
+    const uid = app.middleware.uid();
 
     router.post('/api/user/login', controller.game.user.login);
+
+    router.post('/api/user/get_red_bag', uid, controller.game.user.getRedBag);
 
     // app
     // router.resources('series', '/api/app/series', controller.app.series);
