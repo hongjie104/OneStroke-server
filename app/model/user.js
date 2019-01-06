@@ -20,5 +20,7 @@ module.exports = app => {
         headimgurl: { type: String, default: '' },
         // 只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。
         unionid: { type: String, default: '' },
+        // 已获得的钱的数量
+        money: { type: Number, default: 0 },
     }));
 };
