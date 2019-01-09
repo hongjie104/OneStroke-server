@@ -8,6 +8,8 @@ module.exports = app => {
 
     router.get('/api/user/pass_level', uid, controller.game.user.passLevel);
 
+    router.get('/api/user/replay', uid, controller.game.user.replay);
+
     // app
     // router.resources('series', '/api/app/series', controller.app.series);
 

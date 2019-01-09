@@ -23,5 +23,7 @@ module.exports = app => {
         // 已获得的钱的数量
         money: { type: Number, default: 0 },
         curLevel: { type: Number, default: 1 },
+        // 重玩的次数
+        replayCount: { type: Number, default: 0 },
     }));
 };

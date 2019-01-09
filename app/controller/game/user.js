@@ -59,6 +59,7 @@ class UserController extends Controller {
             id: user._id,
             money: user.money,
             curLevel: user.curLevel,
+            replayCount: user.replayCount,
         });
     }
 
@@ -68,12 +69,28 @@ class UserController extends Controller {
         this.success();
     }
 
+    // 获取红包奖励
     async getRedBag() {
         const { uid } = this.ctx.state;
         const { minVal, maxVal } = this.ctx.request.body;
         const money = parseFloat((Math.random() * (maxVal - minVal) + minVal).toFixed(2));
         await this.ctx.model.User.update({ _id: uid }, { $inc: { money } });
         this.success({ money });
+    }
+
+    async replay() {
+        const { uid } = this.ctx.state;
+        const user = await this.ctx.model.User.findOne({ _id: uid }, { replayCount: 1 });
+        if (user) {
+            if (user.replayCount < 3) {
+                await this.ctx.model.update({ _id: uid }, { $inc: { replayCount: 1 } });
+                this.success(true);
+            } else {
+                this.success(false);
+            }
+        } else {
+            this.fail(`没有找到id为${uid}的玩家`);
+        }
     }
 }
 
