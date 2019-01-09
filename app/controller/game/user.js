@@ -59,7 +59,7 @@ class UserController extends Controller {
             id: user._id,
             money: user.money,
             curLevel: user.curLevel,
-            replayCount: user.replayCount,
+            leftReplayCount: user.leftReplayCount,
         });
     }
 
@@ -80,10 +80,10 @@ class UserController extends Controller {
 
     async replay() {
         const { uid } = this.ctx.state;
-        const user = await this.ctx.model.User.findOne({ _id: uid }, { replayCount: 1 });
+        const user = await this.ctx.model.User.findOne({ _id: uid }, { leftReplayCount: 1 });
         if (user) {
-            if (user.replayCount < 3) {
-                await this.ctx.model.update({ _id: uid }, { $inc: { replayCount: 1 } });
+            if (user.leftReplayCount > 0) {
+                await this.ctx.model.User.update({ _id: uid }, { $inc: { leftReplayCount: -1 } });
                 this.success(true);
             } else {
                 this.success(false);
