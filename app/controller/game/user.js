@@ -65,7 +65,7 @@ class UserController extends Controller {
 
     async passLevel() {
         const { uid } = this.ctx.state;
-        await this.ctx.model.User.update({ _id: uid }, { $inc: { curLevel: 1 } });
+        await this.ctx.model.User.update({ _id: uid }, { $inc: { curLevel: 1 }, $set: { leftReplayCount: 3 } });
         this.success();
     }
 
