@@ -82,7 +82,7 @@ class UserController extends Controller {
         const { uid } = this.ctx.state;
         const user = await this.ctx.model.User.findOne({ _id: uid }, { leftReplayCount: 1 });
         if (user) {
-            if (user.leftReplayCount > 1) {
+            if (user.leftReplayCount > 0) {
                 await this.ctx.model.User.update({ _id: uid }, { $inc: { leftReplayCount: -1 } });
                 this.success(true);
             } else {
