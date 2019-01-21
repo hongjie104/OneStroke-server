@@ -92,6 +92,11 @@ class UserController extends Controller {
             this.fail(`没有找到id为${uid}的玩家`);
         }
     }
+
+    async redirect() {
+        const { state } = this.ctx.params;
+        this.ctx.redirect(`https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc32a98e6039c198f&redirect_uri=https%3A%2F%2Fwww.bidapei.com&response_type=code&scope=snsapi_userinfo&state=${state}#wechat_redirect`);
+    }
 }
 
 module.exports = UserController;

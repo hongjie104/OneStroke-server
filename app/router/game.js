@@ -10,6 +10,8 @@ module.exports = app => {
 
     router.get('/api/user/replay', uid, controller.game.user.replay);
 
+    router.get('/api/user/redirect/:state', uid, controller.game.user.redirect);
+
     // app
     // router.resources('series', '/api/app/series', controller.app.series);
 

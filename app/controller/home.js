@@ -31,7 +31,7 @@ class HomeController extends Controller {
     }
 
     async test() {
-        this.success();
+        this.ctx.redirect('https://www.baidu.com');
     }
 }
 
